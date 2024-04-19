@@ -1,12 +1,8 @@
 "use client";
 import React from "react";
-import ChartOne from "../Charts/ChartOne";
-import ChartThree from "../Charts/ChartThree";
-import ChartTwo from "../Charts/ChartTwo";
 import ChatCard from "../Chat/ChatCard";
 import TableOne from "../Tables/TableOne";
 import CardDataStats from "../CardDataStats";
-import MapOne from "../Maps/MapOne";
 import Tasks from "../AllActiveTasks/Tasks";
 
 const ECommerce: React.FC = () => {
@@ -100,16 +96,14 @@ const ECommerce: React.FC = () => {
       </div>
 
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
-        <ChartOne />
-        {/* <ChartTwo /> */}
-        <Tasks />
-        <ChartThree />
-        <MapOne />
-        <div className="col-span-12 xl:col-span-8">
+        <div className="flex col-span-12 flex-row space-x-4">
+          <Tasks />
+        </div>
+        <div className="flex col-span-12 flex-row ">
           <TableOne />
         </div>
-        <ChatCard />
-      </div>
+      </div >
+      <ChatCard />
     </>
   );
 };

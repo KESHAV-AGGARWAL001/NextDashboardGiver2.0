@@ -1,6 +1,7 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import Task from '../TaskComponent/Task';
-
+import Link from 'next/link';
 interface taskData {
   id: number;
   title: string;
@@ -18,7 +19,7 @@ const tasks: taskData[] = [
   {
     id: 2,
     title: 'Attend Meeting',
-    description: 'Join the team meeting on Friday',
+    description: 'Join the team meeting on Friday and come office',
     deadline: new Date('2024-04-22T10:00:00Z'),
   },
   {
@@ -32,18 +33,36 @@ const tasks: taskData[] = [
 console.log(tasks);
 
 
-const page = () => {
+
+const Tasks = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+
+    //  add the url where all the tasks are present 
+    fetch("url")
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch((err) => console.error(err))
+  }, [])
   return (
-    <div className='w-100vw flex space-y-2 flex-col'>
-      {
-        tasks.map((task) => (
-          <div key={task.id} className='w-full '>
-            <Task task={task} />
-          </div>
-        ))
-      }
-    </div>
+    <div className='flex flex-col space-y-3'>
+      <div className='flex justify-between items-center'>
+        <h1 className='text-2xl text-black font-semibold dark:text-white '>Active Works</h1>
+        <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+          <Link href={"https://nextjs.org/docs/app/api-reference/functions/redirect"}>Add Work</Link>
+        </button>
+      </div>
+      <div className='w-[100%] grid grid-cols-3 '>
+        {
+          tasks.map((task) => (
+            <div key={task.id} className='w-full '>
+              <Task task={task} />
+            </div>
+          ))
+        }
+      </div>
+    </div >
   )
 }
-
-export default page
+export default Tasks
