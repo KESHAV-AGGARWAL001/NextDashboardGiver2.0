@@ -38,8 +38,6 @@ const Tasks = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-
-    //  add the url where all the tasks are present 
     fetch("url")
       .then((response) => response.json())
       .then((data) => setData(data))
